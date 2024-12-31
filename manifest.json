@@ -2,10 +2,10 @@
   "name": "Journal for Bible",
   "short_name": "Bible Journal",
   "description": "A journal to store and manage Bible study notes.",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/images/icon-192x192.png",
