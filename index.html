@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Platform</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb-qNN05Es9jRrmIb7R37LM-NH6XDZfYs",
+            authDomain: "journal-for-bible.firebaseapp.com",
+            databaseURL: "https://journal-for-bible-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "journal-for-bible",
+            storageBucket: "journal-for-bible.firebasestorage.app",
+            messagingSenderId: "996381846371",
+            appId: "1:996381846371:web:efc2dab5666f07d2644156"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // DOM elements
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const authSection = document.getElementById('auth-section');
+        const blogSection = document.getElementById('blog-section');
+        const blogContent = document.getElementById('blog-content');
+        const postBtn = document.getElementById('post-btn');
+        const blogList = document.getElementById('blog-list');
+
+        // Authentication
+        loginBtn.addEventListener('click', async () => {
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
+                toggleSections(true);
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        signupBtn.addEventListener('click', async () => {
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
+                toggleSections(true);
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                toggleSections(false);
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                toggleSections(true);
+                loadBlogs(user.uid);
+            } else {
+                toggleSections(false);
+            }
+        });
+
+        // Blog functionality
+        postBtn.addEventListener('click', async () => {
+            const user = auth.currentUser;
+            if (user && blogContent.value.trim() !== "") {
+                await addDoc(collection(db, 'blogs'), {
+                    uid: user.uid,
+                    content: blogContent.value,
+                    timestamp: serverTimestamp()
+                });
+                blogContent.value = "";
+                loadBlogs(user.uid);
+            }
+        });
+
+        async function loadBlogs(uid) {
+            const querySnapshot = await getDocs(query(collection(db, 'blogs'), where('uid', '==', uid)));
+            blogList.innerHTML = "";
+            querySnapshot.forEach((doc) => {
+                const li = document.createElement('li');
+                li.textContent = doc.data().content;
+                blogList.appendChild(li);
+            });
+        }
+
+        function toggleSections(isLoggedIn) {
+            if (isLoggedIn) {
+                authSection.style.display = 'none';
+                blogSection.style.display = 'block';
+                logoutBtn.style.display = 'inline';
+            } else {
+                authSection.style.display = 'block';
+                blogSection.style.display = 'none';
+                logoutBtn.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Blog Platform</h1>
+
+    <div id="auth-section">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="login-btn">Login</button>
+        <button id="signup-btn">Sign Up</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
+
+    <div id="blog-section" style="display:none;">
+        <h2>Create a Blog</h2>
+        <textarea id="blog-content" placeholder="Write your blog here..."></textarea><br>
+        <button id="post-btn">Post Blog</button>
+
+        <h2>Your Blogs</h2>
+        <ul id="blog-list"></ul>
+    </div>
+</body>
+</html>
