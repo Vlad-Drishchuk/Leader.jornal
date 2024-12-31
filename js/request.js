@@ -23,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     get(notesQuery)
         .then((snapshot) => {
+            document.write(`<h3>${loggedInUserId}</h3>`);
             if (snapshot.exists()) {
                 const notesContainer = document.getElementById('notesContainer');
                 notesContainer.innerHTML = ''; // Clear existing content
+                document.write(`<h3>${Date}</h3>`);
 
                 snapshot.forEach((childSnapshot) => {
                     const noteData = childSnapshot.val();
