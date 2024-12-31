@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"></script>
-    <script type="module" src="js/Login.js" defer></script>
 
   </head>
   <body>
@@ -18,19 +18,18 @@
     <form id="reg_form">
       
 
-      <label for="emailIN">Email:</label>
-      <input type="email" id="emailIN" name="email"><br><br>
-      
-      <label for="passwordIN">Password:</label>
-      <input type="password" id="passwordIN" name="password"><br><br>
-      
-      <button type="button" id="logIn">Увійти</button>
-      <div id="signInMessage"></div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        
+        <button type="button" id="reg">Зареєструватись</button>
+        <div id="signUpMessage"></div>
+    
+    </form>
 
-      </form>
-      <p>      Немає акаунту? <a href="Registration.html">створити</a></p>
-
-  <script type="module" src="js/Login.js" defer></script>
+  <script type="module" src="js/init.js" defer></script>
 
   </body>
 </html>
