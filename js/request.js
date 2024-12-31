@@ -1,6 +1,5 @@
-// Import Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getDatabase, ref, set, get, query, orderByChild } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDb-qNN05Es9jRrmIb7R37LM-NH6XDZfYs",
@@ -19,18 +18,23 @@ const loggedInUserId = localStorage.getItem('loggedInUserId');
 // Fetch and display user notes on page load
 document.addEventListener('DOMContentLoaded', () => {
     const userNotesRef = ref(db, `Page_of_Journal/${loggedInUserId}`);
-    const notesQuery = query(userNotesRef, orderByChild('Date'));
-
-    get(notesQuery)
+    
+    get(userNotesRef)
         .then((snapshot) => {
-            document.write(`<h3>${loggedInUserId}</h3>`);
             if (snapshot.exists()) {
                 const notesContainer = document.getElementById('notesContainer');
                 notesContainer.innerHTML = ''; // Clear existing content
-                document.write(`<h3>${Date}</h3>`);
 
-                snapshot.forEach((childSnapshot) => {
-                    const noteData = childSnapshot.val();
+                // Display current date
+                const currentDate = new Date().toLocaleDateString();
+                const dateHeader = document.createElement('h3');
+                dateHeader.textContent = `Today's Date: ${currentDate}`;
+                notesContainer.appendChild(dateHeader);
+
+                // Loop through each note by date
+                const notesData = snapshot.val();
+                Object.keys(notesData).sort().forEach(date => {
+                    const noteData = notesData[date];
 
                     const noteElement = document.createElement('div');
                     noteElement.classList.add('note-item');
