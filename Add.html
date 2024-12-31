@@ -3,11 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Додати Нотатку</title>
     <script type="module" src="js/add.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <form>
+    <form action="#" method="POST">
         <label for="topic">Тема:</label><br>
         <input type="text" id="topic" name="topic" required><br><br>
 
@@ -18,9 +54,9 @@
         <input type="date" id="date" name="date" required><br><br>
 
         <label for="note">Нотатка:</label><br>
-        <textarea id="note" name="note" rows="6" cols="50" required></textarea><br><br>
+        <textarea id="note" name="note" rows="6" required></textarea><br><br>
 
-        <button id="SaveNote">Зберегти</button>
+        <button type="submit" id="SaveNote">Зберегти</button>
     </form>
 </body>
 </html>
