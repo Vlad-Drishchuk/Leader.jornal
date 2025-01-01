@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Display current date
                 const currentDate = new Date().toLocaleDateString();
                 const dateHeader = document.createElement('h3');
-                dateHeader.textContent = `Today's Date: ${currentDate}`;
+                dateHeader.textContent = `Сьогодні: ${currentDate}`;
                 notesContainer.appendChild(dateHeader);
 
                 // Loop through each note by date

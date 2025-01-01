@@ -23,6 +23,54 @@
         a:hover {
             text-decoration: underline;
         }
+        #notesContainer {
+            margin-top: 20px;
+        }
+        .note-item {
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .note-topic {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .note-bible-reference {
+            color: #555;
+        }
+        .note-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+        .note-text {
+            margin-top: 10px;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .form-container input,
+        .form-container textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +78,13 @@
     <nav>
         <a href="settings.html">Змінити/додати дані про себе</a>
         <a href="Add.html">Додати записи</a>
-        <a href="See.html">Переглянути записи</a>
     </nav>
+
+    <div id="notesContainer">
+        
+    </div>
+
+    
+    <script type="module" src="js/request.js"></script> 
 </body>
 </html>
