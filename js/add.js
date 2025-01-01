@@ -1,5 +1,7 @@
+// ADD.JS
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDb-qNN05Es9jRrmIb7R37LM-NH6XDZfYs",
@@ -20,11 +22,6 @@ document.getElementById('SaveNote').addEventListener('click', () => {
     const date = document.getElementById('date').value.trim();
     const note = document.getElementById('note').value.trim();
 
-    console.log('Topic:', topic);
-    console.log('Bible Reference:', bibleReference);
-    console.log('Date:', date);
-    console.log('Note:', note);
-
     if (!topic || !bibleReference || !date || !note) {
         alert("Будь ласка, заповніть всі поля.");
         return;
@@ -40,7 +37,8 @@ document.getElementById('SaveNote').addEventListener('click', () => {
     })
     .then(() => {
         console.log("Дані успішно збережено!");
-        clearFormFields(); // Переконайтеся, що функція існує
+        clearFormFields();
+        displayNotes(); // Оновлюємо нотатки
     })
     .catch((error) => {
         alert("Помилка: " + error.message);
