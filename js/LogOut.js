@@ -6,5 +6,5 @@ document.getElementById('logoutButton').addEventListener('click', () => {
     // localStorage.clear(); // якщо потрібно видалити все
 
     // Перенаправляємо на сторінку входу
-    window.location.href = 'login.html'; // Вкажіть вашу сторінку входу
+    window.location.href = 'index.html'; // Вкажіть вашу сторінку входу
 });
