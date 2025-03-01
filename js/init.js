@@ -45,7 +45,7 @@
       email: Email
     }
     const docRef = (db, "users", user.uid);
-    localStorage.setItem('loggedInUserId', user.uid);
+    localStorage.setItem('userId', user.uid);
 
     UserID = docRef;
     setDoc(docRef, userData)

@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Exo 2";
+    background-color: #fefae0;
+}
+    .note-item{
+    margin: 2.5%;
+    padding: 0px 10px;
+    background-color: #faedcd;
+    border-radius: 12px;
+    padding-top: 5px;
+   }
+    h3{
+        font-size: 25px;
+        margin-bottom: 0px;
+    }
+    .note-bible-reference{
+        font-style: italic;
+    }
+    .note-text{
+        margin-bottom: 10px;
+    }
+    input, textarea{
+        width: 90vw;
+    }
+    b {
+        font-weight: bold;
+    }
+
+    i {
+        font-style: italic;
+    }
+
+    s {
+        text-decoration: line-through;
+    }
+
+    blockquote {
+        border-left: 4px solid #ccd5ae;
+        padding-left: 10px;
+        color: #000;
+        margin: 10px 0;
+        background-color: #e9edc9;
+        border-radius: 8px;
+    }
+
+    ol, ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px 0;
+    }
+
+    code {
+        font-family: monospace;
+        background: #eee;
+        padding: 2px 4px;
+        border-radius: 4px;
+    }
+
+    pre {
+        background: #333;
+        color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+
+    br {
+        display: block;
+        content: "";
+        margin: 5px 0;
+    }
+    .menu {
+        display: flex;
+        flex-direction: column; /* Розташовує елементи вертикально */
+        justify-content: center; /* Центрує елементи меню по горизонталі */
+        align-items: center; /* Центрує елементи меню по вертикалі */
+        gap: 20px; /* Відстань між елементами меню */
+        width: 100%; /* Займає всю доступну ширину */
+      }
+    
+      .menu-el {
+        width: 20%; /* Елементи меню займають всю ширину */
+        display: flex;
+        justify-content: center; /* Центруємо текст всередині елемента */
+        align-items: center; /* Центруємо текст по вертикалі */
+      }
+    
+      button {
+        width: 100%; /* Кнопки займають всю ширину */
+        padding: 10px;
+        background-color: #a3b18a; /* Колір фону кнопок */
+        color: white; /* Колір тексту */
+        border: none; /* Без рамки */
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer; /* Курсор при наведенні */
+        transition: background-color 0.3s; /* Плавна зміна фону при наведенні */
+        border-radius: 12px;
+      }
+    
+      button:hover {
+        background-color: #8c9e71; /* Колір фону при наведенні */
+      }
+    
+      a {
+        text-decoration: none; /* Прибирає підкреслення з посилання */
+        color: inherit; /* Спадковий колір для тексту */
+      }
+
+      #logoutButton{
+        background-color: #e63946;
+        width: 20%;
+     }
+    @media screen and (max-width: 768px) {
+        body {
+         padding: 0;
+         margin: 10px;
+         overflow-x: hidden; /* Запобігає горизонтальній прокрутці */
+        }
+     
+        .menu {
+         display: flex;
+         flex-direction: column; /* Розташовує елементи вертикально */
+         justify-content: center; /* Центрує елементи меню по горизонталі */
+         align-items: center; /* Центрує елементи меню по вертикалі */
+         gap: 20px; /* Відстань між елементами меню */
+         width: 100%; /* Займає всю доступну ширину */
+       }
+     
+       .menu-el {
+         width: 100%; /* Елементи меню займають всю ширину */
+         display: flex;
+         justify-content: center; /* Центруємо текст всередині елемента */
+         align-items: center; /* Центруємо текст по вертикалі */
+       }
+     
+       button {
+         width: 100%; /* Кнопки займають всю ширину */
+         padding: 10px;
+         background-color: #a3b18a; /* Колір фону кнопок */
+         color: white; /* Колір тексту */
+         border: none; /* Без рамки */
+         font-size: 16px;
+         text-align: center;
+         cursor: pointer; /* Курсор при наведенні */
+         transition: background-color 0.3s; /* Плавна зміна фону при наведенні */
+         border-radius: 12px;
+       }
+     
+       button:hover {
+         background-color: #8c9e71; /* Колір фону при наведенні */
+       }
+     
+       a {
+         text-decoration: none; /* Прибирає підкреслення з посилання */
+         color: inherit; /* Спадковий колір для тексту */
+       }
+       #logoutButton{
+        width: 100%;
+       }
+     }

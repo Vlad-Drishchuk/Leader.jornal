@@ -15,11 +15,11 @@ const firebaseConfig = {
 // Ініціалізація Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const loggedInUserId = localStorage.getItem('loggedInUserId');
+const userId = localStorage.getItem('userId');
 
 // Завантаження нотаток після завантаження сторінки
 document.addEventListener('DOMContentLoaded', () => {
-    const userNotesRef = ref(db, `Page_of_Journal/${loggedInUserId}`);
+    const userNotesRef = ref(db, `Page_of_Journal/${userId}`);
     
     get(userNotesRef)
         .then((snapshot) => {
@@ -35,22 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Відображення нотаток
                 const notesData = snapshot.val();
-                Object.keys(notesData).sort().forEach(date => {
+                Object.keys(notesData).sort().reverse().forEach(date => {
                     const noteData = notesData[date];
                     const noteElement = document.createElement('div');
                     noteElement.classList.add('note-item');
-
-                    // Рендеринг нотаток із підтримкою Markdown
+                
                     const noteContent = `
                         <h3 class="note-topic">${noteData.Topic}</h3>
                         <p class="note-bible-reference">${noteData.BibleReference}</p>
                         <p class="note-date">${noteData.Date}</p>
                         <div class="note-text">${renderMarkdown(noteData.Note)}</div>
                     `;
-
+                
                     noteElement.innerHTML = noteContent;
                     notesContainer.appendChild(noteElement);
                 });
+                
             } else {
                 notesContainer.innerHTML = "<p>У вас немає нотаток.</p>";
             }

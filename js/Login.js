@@ -20,7 +20,7 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is logged in, redirect to the main page
-    localStorage.setItem('loggedInUserId', user.uid);
+    localStorage.setItem('userId', user.uid);
     window.location.href = 'Jornal.html';
   }
 });
@@ -41,13 +41,16 @@ document.getElementById('logIn').addEventListener('click', (event) => {
   event.preventDefault();
   const email = document.getElementById('emailIN').value;
   const password = document.getElementById('passwordIN').value;
+  
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       console.log('User signed in:', userCredential);
       showMessage('Login is successful', 'signInMessage');
       const user = userCredential.user;
-      localStorage.setItem('loggedInUserId', user.uid);
+      localStorage.setItem('userId', user.uid);
+      let firstName = userData ? userData.firstName : "";
+
       window.location.href = 'Jornal.html';
     })
     .catch((error) => {

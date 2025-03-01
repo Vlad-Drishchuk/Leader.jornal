@@ -13,15 +13,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 const app = initializeApp(firebaseConfig);
 // Get a reference to the database
 const db = getDatabase(app);
-const loggedInUserId = localStorage.getItem('loggedInUserId');
+const userId = localStorage.getItem('userId');
 
 const dbRef = ref(getDatabase());
 addNewUser();
 
 function addNewUser(){
-    console.log(loggedInUserId);
+    console.log(userId);
 
-    get(child(dbRef, `users/${loggedInUserId}`))
+    get(child(dbRef, `users/${userId}`))
     .then((snapshot) => {
     if (snapshot.exists()) {
         console.log("User exists:", snapshot.val());
@@ -30,8 +30,8 @@ function addNewUser(){
         // Create a new user object (you'll need to define the structure)
         
         // Write the new user data to the database
-        set(child(dbRef, "Users/" + loggedInUserId), {
-        userId: loggedInUserId
+        set(child(dbRef, "Users/" + userId), {
+        userId: userId
         })
         .then(() => {
             console.log("New user created successfully!");
@@ -47,7 +47,7 @@ function addNewUser(){
 
 }
 function displeyId(){
-    document.getElementById('userid').textContent = loggedInUserId;
+    document.getElementById('userid').textContent = userId;
 }
 window.onload = displeyId();
 
@@ -56,16 +56,17 @@ window.onload = displeyId();
 let UserInfo = document.getElementById('UserInfo');
 
 UserInfo.addEventListener('click', ()=>{
-    const userRef = ref(db, `Users/${loggedInUserId}`);
+    const userRef = ref(db, `Users/${userId}`);
 
     set(userRef, {
-        userId: loggedInUserId,
+        userId: userId,
         lastName: document.getElementById('lastName').value.trim(),
         firstName: document.getElementById('firstName').value.trim()
     })
     .then(() => {
         console.log('User fields updated/created successfully!');
         window.location.href = 'Jornal.html';
+
     })
     .catch((error) => {
         console.error('Error updating/creating user fields:', error);

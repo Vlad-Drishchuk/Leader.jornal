@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const loggedInUserId = localStorage.getItem('loggedInUserId');
+const userId = localStorage.getItem('userId');
 
 document.getElementById('SaveNote').addEventListener('click', () => {
     const topic = document.getElementById('topic').value.trim();
@@ -27,7 +27,7 @@ document.getElementById('SaveNote').addEventListener('click', () => {
         return;
     }
 
-    const refNote = ref(db, `Page_of_Journal/${loggedInUserId}/${date}`);
+    const refNote = ref(db, `Page_of_Journal/${userId}/${date}`);
 
     set(refNote, {
         Topic: topic,
