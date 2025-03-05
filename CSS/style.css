@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: "Exo 2";
-    background-color: #faedcd;
+    background-color: #f5ebe0;
 }
 .login{
   width: 60vw;
@@ -22,12 +22,13 @@ body{
     border-color: #333;
     color: #000;
   }
-    .note-item{
+.note-item{
     margin: 2.5%;
     padding: 0px 10px;
-    background-color: #faedcd;
+    background-color: #e3d5ca;
     border-radius: 12px;
-    padding-top: 5px;
+    padding-top: 1px;
+    padding-bottom: 10px;
    }
     h3{
         font-size: 25px;

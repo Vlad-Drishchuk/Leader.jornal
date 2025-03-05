@@ -115,5 +115,7 @@ function renderMarkdown(text) {
 
             // Розриви рядків (\n)
             .replace(/\n/g, '<br>');
+            console.log(JSON.stringify(text));
+
     }
 }
