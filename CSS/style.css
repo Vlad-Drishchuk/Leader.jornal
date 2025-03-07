@@ -23,6 +23,7 @@ body{
     border-color: #333;
     color: #000;
   }
+
 .note-item{
     margin: 2.5%;
     padding: 0px 10px;
@@ -141,7 +142,10 @@ body{
       button:hover {
         background-color: #8c9e71; /* Колір фону при наведенні */
       }
-    
+      .delete-btn{
+        text-transform: uppercase;
+        
+      }
       a {
         text-decoration: none; /* Прибирає підкреслення з посилання */
         color: inherit; /* Спадковий колір для тексту */
