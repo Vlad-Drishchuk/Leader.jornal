@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>Додати Нотатку</title> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body>
+<body class="add">
 
-    <div>
+    <div class="addform">
         <button onclick="window.location.href='Jornal.html'">Повернутися назад</button>
 
         <label for="topic">Тема:</label><br>
@@ -25,19 +25,20 @@
         <textarea id="note" rows="6" required></textarea><br><br>
 
         <button type="button" id="SaveNote">Зберегти</button>
+        <p>
+            Що підтримується:<br>
+        1.	Заголовки: #, ##, ###, ####, #####, ######.<br>
+        2.	Жирний текст: **текст**, __текст__.<br>
+        3.	Курсив: *текст*, _текст_.<br>
+        4.	Жирний + курсив: ***текст***, ___текст___.<br>
+        5.	Закреслений текст: ~~текст~~.<br>
+        6.	Цитати: > текст.<br>
+        8.	Нумеровані списки: 1. текст.<br>
+        9.	Марковані списки: - текст, * текст.<br>
+        </p>
     </div>
-    <p>
-        Що підтримується:<br>
-    1.	Заголовки: #, ##, ###, ####, #####, ######.<br>
-    2.	Жирний текст: **текст**, __текст__.<br>
-    3.	Курсив: *текст*, _текст_.<br>
-    4.	Жирний + курсив: ***текст***, ___текст___.<br>
-    5.	Закреслений текст: ~~текст~~.<br>
-    6.	Цитати: > текст.<br>
-    8.	Нумеровані списки: 1. текст.<br>
-    9.	Марковані списки: - текст, * текст.<br>
-    </p>
-    <script type="module" src="js/add.js"></script>
+    
+      <script type="module" src="js/add.js"></script>
 
 </body>
 </html>

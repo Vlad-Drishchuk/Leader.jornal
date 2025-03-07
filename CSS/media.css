@@ -64,4 +64,11 @@
    #logoutButton{
     width: 100%;
    }
+   .addform{
+    max-width: 90vw;
+    margin-left: 5vw;
+  }
+  .addform input{
+    max-width: 80vw;
+  }
  }

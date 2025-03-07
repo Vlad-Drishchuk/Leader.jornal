@@ -150,3 +150,17 @@ body{
         background-color: #e63946;
         width: 20%;
      }
+     .add{
+        width: 100vw;
+        
+     }
+     .addform{
+        max-width: 90vw;
+        margin-left: 5vw;
+     }
+     .addform input, textarea{
+        max-width: 85vw;
+        min-height: 25px;
+        font-family: "Exo 2";
+        font-size: 15px;
+      }
