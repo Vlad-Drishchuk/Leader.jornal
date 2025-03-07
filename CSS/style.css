@@ -12,6 +12,7 @@ body{
 }
 .login button{
     max-width: 20vw;
+    padding: 5px 10px;
     margin-left: 20vw;
   }
 .login #reg_form input{

@@ -4,8 +4,8 @@
   "description": "A journal to store and manage Bible study notes.",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#faedcd",
-  "theme_color": "#faedcd",
+  "background_color": "#f5ebe0",
+  "theme_color": "#f5ebe0",
   "icons": [
     {
       "src": "/images/icon-192x192.png",
