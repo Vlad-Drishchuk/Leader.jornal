@@ -91,7 +91,9 @@ function renderMarkdown(text) {
             .replace(/~~(.+?)~~/g, '<s>$1</s>')
 
             // Цитати (>)
-            .replace(/^>\s(.+)$/gm, '<blockquote>$1</blockquote>')
+            .replace(/^>\s+([\s\S]+?)(?=<[^>]|$)/gm, '<blockquote>$1</blockquote>')
+
+
 
             // Нумеровані списки (1. текст)
             .replace(/^\d+\.\s(.+)$/gm, '<li>$1</li>') // Нумерований пункт
@@ -114,7 +116,7 @@ function renderMarkdown(text) {
             .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
 
             // Розриви рядків (\n)
-            .replace(/\n/g, '<br>');
+            .replace(/^'\n'\s/g, '<br>');
             console.log(JSON.stringify(text));
 
     }

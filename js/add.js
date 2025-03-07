@@ -1,7 +1,6 @@
-// ADD.JS
-
+// add.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDb-qNN05Es9jRrmIb7R37LM-NH6XDZfYs",
@@ -12,11 +11,12 @@ const firebaseConfig = {
     messagingSenderId: "996381846371",
     appId: "1:996381846371:web:efc2dab5666f07d2644156"
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const userId = localStorage.getItem('userId');
 
-document.getElementById('SaveNote').addEventListener('click', () => {
+document.getElementById('SaveNote').addEventListener('click', async () => {
     const topic = document.getElementById('topic').value.trim();
     const bibleReference = document.getElementById('bibleReference').value.trim();
     const date = document.getElementById('date').value.trim();
@@ -29,21 +29,29 @@ document.getElementById('SaveNote').addEventListener('click', () => {
 
     const refNote = ref(db, `Page_of_Journal/${userId}/${date}`);
 
-    set(refNote, {
-        Topic: topic,
-        BibleReference: bibleReference,
-        Date: date,
-        Note: note
-    })
-    .then(() => {
+    try {
+        await set(refNote, {
+            Topic: topic,
+            BibleReference: bibleReference,
+            Date: date,
+            Note: note
+        });
+
         console.log("Дані успішно збережено!");
         clearFormFields();
-        displayNotes(); // Оновлюємо нотатки
-    })
-    .catch((error) => {
-        alert("Помилка: " + error.message);
-        console.error("Error:", error);
-    });
+
+        // Перенаправлення після успішного збереження
+        window.location.href = 'Jornal.html';
+
+    } catch (error) {
+        console.error("Помилка:", error);
+
+        if (error.code === 'PERMISSION_DENIED' || error.message.includes('405')) {
+            console.warn("Сервер заблокував запит. Перенаправлення...");
+        }
+
+        window.location.href = 'Jornal.html';  // Завжди перенаправляємо
+    }
 });
 
 function clearFormFields() {

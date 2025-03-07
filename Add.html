@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Додати Нотатку</title>
-    <script type="module" src="js/add.js"></script>
+    <title>Додати Нотатку</title> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
-    <form action="#" method="POST">
+    <div>
         <button onclick="window.location.href='Jornal.html'">Повернутися назад</button>
 
         <label for="topic">Тема:</label><br>
-        <input type="text" id="topic" name="topic" required><br><br>
+        <input type="text" id="topic" required><br><br>
 
         <label for="bibleReference">Місце з Біблії:</label><br>
-        <input type="text" id="bibleReference" name="bibleReference" required><br><br>
+        <input type="text" id="bibleReference" required><br><br>
 
         <label for="date">Дата:</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+        <input type="date" id="date" required><br><br>
 
         <label for="note">Нотатка:</label><br>
-        <textarea id="note" name="note" rows="6" required></textarea><br><br>
+        <textarea id="note" rows="6" required></textarea><br><br>
 
-        <button type="submit" id="SaveNote">Зберегти</button>
+        <button type="button" id="SaveNote">Зберегти</button>
+    </div>
+    <p>
+        Що підтримується:<br>
+    1.	Заголовки: #, ##, ###, ####, #####, ######.<br>
+    2.	Жирний текст: **текст**, __текст__.<br>
+    3.	Курсив: *текст*, _текст_.<br>
+    4.	Жирний + курсив: ***текст***, ___текст___.<br>
+    5.	Закреслений текст: ~~текст~~.<br>
+    6.	Цитати: > текст.<br>
+    8.	Нумеровані списки: 1. текст.<br>
+    9.	Марковані списки: - текст, * текст.<br>
+    </p>
+    <script type="module" src="js/add.js"></script>
 
-
-        <p>
-            Що підтримується:<br>
-        1.	Заголовки: #, ##, ###, ####, #####, ######.<br>
-        2.	Жирний текст: **текст**, __текст__.<br>
-        3.	Курсив: *текст*, _текст_.<br>
-        4.	Жирний + курсив: ***текст***, ___текст___.<br>
-        5.	Закреслений текст: ~~текст~~.<br>
-        6.	Цитати: > текст.<br>
-        8.	Нумеровані списки: 1. текст.<br>
-        9.	Марковані списки: - текст, * текст.<br>
-        </p>
-    </form>
 </body>
 </html>
