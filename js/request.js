@@ -16,6 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const userId = localStorage.getItem('userId');
+let DataMasive = [];
+let DataCount = 0;
 
 // Завантаження нотаток після завантаження сторінки
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,26 +51,83 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                     noteElement.innerHTML = noteContent;
                     notesContainer.appendChild(noteElement);
+
+                    DataMasive[DataCount] = date;
+                    DataCount = DataCount + 1;
+                    console.log(DataMasive);
                 });
 
-                // Додаємо обробники подій для кнопок видалення
-                document.querySelectorAll('.delete-btn').forEach(button => {
-                    button.addEventListener('click', (event) => {
-                        const noteId = event.target.getAttribute('data-note-id');
-                        const isConfirmed = window.confirm("Ви дійсно хочете видалити цю нотатку?");
-                        if (isConfirmed) {
-                            deleteNote(noteId);
-                        }
-                    });
+                document.body.addEventListener('click', (event) => {
+                    const target = event.target.closest('.delete-btn');
+                    console.log("Clicked element:", event.target); // Дивимося, на що натиснули
+                    console.log("Closest delete button:", target); // Перевіряємо, чи правильно знайшло кнопку
+                    
+                    if (!target) return;
+                
+                    const noteId = target.getAttribute('data-note-id');
+                    console.log("Extracted Note ID:", noteId); // Перевіряємо, що отримуємо ID
+                
+                    if (!noteId) {
+                        console.error("data-note-id is missing or null");
+                        return;
+                    }
+                
+                    const isConfirmed = window.confirm("Ви дійсно хочете видалити цю нотатку?");
+                    if (isConfirmed) {
+                        deleteNote(noteId);
+                    }
                 });
+                
+                
             } else {
                 notesContainer.innerHTML = "<p>У вас немає нотаток.</p>";
             }
         })
+        .then(()=>{
+            // Виклик функції та виведення результату
+            const numberOfRecords = countRecordsInCurrentMonth(DataMasive);
+            document.getElementById("numberOfRecords").textContent = `Кількість записів у місяці ${numberOfRecords.monthName}: ${numberOfRecords.count}`;
+        })
         .catch((error) => {
             console.error("Помилка при отриманні нотаток: ", error);
         });
+
 });
+function countRecordsInCurrentMonth(DataMasive) {
+    // Масив назв місяців у правильному відмінку
+    const months = [
+        'Січні', 'Лютому', 'Березні', 'Квітні', 'Травні', 'Червні',
+        'Липні', 'Серпні', 'Вересні', 'Жовтні', 'Листопаді', 'Грудні'
+    ];
+
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    let count = 0;
+
+    // Проходимо по всіх записах у масиві
+    DataMasive.forEach(date => {
+        const recordDate = new Date(date);
+
+        // Перевіряємо, чи дата коректна
+        if (!isNaN(recordDate)) {
+            if (recordDate.getFullYear() === currentYear && recordDate.getMonth() === currentMonth) {
+                count++;
+            }
+        }
+    });
+
+    // Виводимо у консоль
+    console.log(`Записів у ${months[currentMonth]}: ${count}`);
+
+    // Відображаємо в HTML
+    document.getElementById("numberOfRecords").textContent = `Записів у ${months[currentMonth]}: ${count}`;
+
+    return { count, monthName: months[currentMonth] };
+}
+
+
+
 
 function renderMarkdown(text) {
     if (typeof marked !== 'undefined') {
@@ -102,6 +161,7 @@ function renderMarkdown(text) {
 }
 
 function deleteNote(noteId) {
+    console.log(noteId);
     const noteRef = ref(db, `Page_of_Journal/${userId}/${noteId}`);
     
     remove(noteRef)
